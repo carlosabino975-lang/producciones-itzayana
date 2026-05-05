@@ -1,0 +1,298 @@
+/* styles.css - Producciones Itzayana */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    background: #FFF8F0;
+    color: #2E241F;
+}
+
+/* ===== NAVEGACIÓN ===== */
+nav {
+    background: #5C2E1A;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #F5C542;
+    letter-spacing: -0.5px;
+}
+
+.logo h1 span {
+    color: #FFE0A3;
+    font-weight: 300;
+}
+
+.logo p {
+    color: #FFDEA5;
+    font-size: 0.75rem;
+    font-style: italic;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #FFF2DF;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+    font-size: 1rem;
+}
+
+.nav-links a:hover {
+    color: #F5C542;
+    transform: translateY(-2px);
+}
+
+.menu-icon {
+    display: none;
+    font-size: 1.8rem;
+    color: #F5C542;
+    cursor: pointer;
+}
+
+/* ===== HERO PRINCIPAL (NUEVO DISEÑO) ===== */
+.hero {
+    background: linear-gradient(135deg, #EEDDC5 0%, #F7E9D7 100%);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-bottom: 5px solid #F5C542;
+}
+
+.hero-contenido {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.nombre-destacado {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: #5C2E1A;
+    letter-spacing: 3px;
+    margin-bottom: 0.5rem;
+}
+
+.nombre-destacado .itzayana {
+    background: linear-gradient(135deg, #5C2E1A, #9B5E2C);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+.lema {
+    font-size: 1.4rem;
+    color: #9B5E2C;
+    font-weight: 600;
+    margin: 0.5rem 0;
+    font-style: italic;
+}
+
+.lema span {
+    background: #F5C542;
+    padding: 0.2rem 0.8rem;
+    border-radius: 40px;
+    color: #5C2E1A;
+}
+
+.descripcion-breve {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 1.5rem auto;
+    color: #4A3424;
+}
+
+.botones-hero {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primario {
+    background: #5C2E1A;
+    color: #F5C542;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+    border: 2px solid #F5C542;
+}
+
+.btn-primario:hover {
+    background: #F5C542;
+    color: #5C2E1A;
+    transform: scale(1.02);
+}
+
+.btn-secundario {
+    background: transparent;
+    color: #5C2E1A;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #5C2E1A;
+    transition: 0.2s;
+}
+
+.btn-secundario:hover {
+    background: #5C2E1A;
+    color: #F5C542;
+}
+
+/* ===== SECCIÓN PRESENTACIÓN ===== */
+.presentacion {
+    padding: 3rem 2rem;
+    background: white;
+    text-align: center;
+}
+
+.presentacion h2 {
+    font-size: 2rem;
+    color: #5C2E1A;
+    margin-bottom: 1rem;
+}
+
+.presentacion h2 i {
+    color: #F5C542;
+    margin-right: 0.5rem;
+}
+
+.presentacion p {
+    max-width: 800px;
+    margin: 0 auto 1rem;
+    font-size: 1.05rem;
+    color: #3E2A1C;
+}
+
+.firma {
+    font-weight: bold;
+    color: #F5C542;
+    background: #5C2E1A;
+    display: inline-block;
+    padding: 0.3rem 1.2rem;
+    border-radius: 30px;
+    margin-top: 1rem;
+}
+
+/* ===== PREVIEW SERVICIOS (íconos) ===== */
+.preview-servicios {
+    background: #FDF6EC;
+    padding: 3rem 2rem;
+}
+
+.preview-servicios h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #5C2E1A;
+    margin-bottom: 2rem;
+}
+
+.iconos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.icono-card {
+    text-align: center;
+    width: 160px;
+}
+
+.icono-card i {
+    font-size: 2.8rem;
+    background: #5C2E1A;
+    color: #F5C542;
+    padding: 1rem;
+    border-radius: 60px;
+    width: 70px;
+    height: 70px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.8rem;
+    transition: 0.2s;
+}
+
+.icono-card:hover i {
+    transform: scale(1.05);
+    background: #F5C542;
+    color: #5C2E1A;
+}
+
+.icono-card span {
+    font-weight: 600;
+    color: #3E2A1C;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: #2E1A0E;
+    color: #FFE0B5;
+    text-align: center;
+    padding: 1.8rem;
+    font-size: 0.9rem;
+}
+
+footer .contacto-footer {
+    margin-top: 0.5rem;
+    font-weight: bold;
+    color: #F5C542;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    nav {
+        padding: 1rem;
+    }
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .menu-icon {
+        display: block;
+    }
+    .nombre-destacado {
+        font-size: 2rem;
+    }
+    .lema {
+        font-size: 1rem;
+    }
+    .hero {
+        padding: 2rem 1rem;
+    }
+    .iconos-grid {
+        gap: 1.2rem;
+    }
+    .icono-card {
+        width: 130px;
+    }
+}

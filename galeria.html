@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - Producciones Itzayana</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+        .galeria-item {
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: #fff5e6;
+            text-align: center;
+        }
+        .galeria-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+        .galeria-item img:hover {
+            transform: scale(1.02);
+        }
+        .galeria-item p {
+            padding: 0.5rem;
+            background: #6b2e1f;
+            color: #f7d44a;
+            font-weight: bold;
+        }
+        .subir-imagen {
+            text-align: center;
+            margin: 2rem;
+            padding: 1rem;
+            background: #f5e6d3;
+            border-radius: 30px;
+        }
+        .btn-subir {
+            background: #6b2e1f;
+            color: #f7d44a;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h1>🎈 Producciones Itzayana</h1>
+            <p>Entregando en tiempo y forma</p>
+        </div>
+        <div class="menu-icon" id="menuToggle">☰</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <h1 style="text-align: center; margin: 2rem; color:#6b2e1f;">📸 Nuestros Trabajos Realizados</h1>
+
+    <div class="galeria-grid" id="galeriaContainer">
+        <!-- Ejemplos de trabajos reales (cambia las imágenes por las tuyas) -->
+        <div class="galeria-item">
+            <img src="https://placehold.co/400x300/f7d44a/6b2e1f?text=Decoración+Globos" alt="Adornos globos">
+            <p>🎈 Decoración temática</p>
+        </div>
+        <div class="galeria-item">
+            <img src="https://placehold.co/400x300/d49c6c/ffffff?text=Imitador+Michael" alt="Show imitador">
+            <p>🎤 Show Imitador de Artista</p>
+        </div>
+        <div class="galeria-item">
+            <img src="https://placehold.co/400x300/a56b3a/ffe0b5?text=Boda+Romántica" alt="Boda">
+            <p>💒 Boda con arco floral</p>
+        </div>
+        <div class="galeria-item">
+            <img src="https://placehold.co/400x300/e6b17e/4a2a1a?text=XV+Años" alt="Fiesta 15 años">
+            <p>👑 15 años mágicos</p>
+        </div>
+    </div>
+
+    <div class="subir-imagen">
+        <h3>➕ Agrega tus propios trabajos</h3>
+        <input type="file" id="subirFoto" accept="image/*">
+        <button class="btn-subir" id="btnAgregarFoto">Subir imagen a galería</button>
+        <p style="margin-top: 0.5rem;">📱 Capturada en moto g2 play - 8 de abril de 2022</p>
+    </div>
+
+    <footer>
+        <p>© 2025 Producciones Itzayana - Juventino Sánchez Ruiz | 📞 971 113 9009</p>
+    </footer>
+
+    <script>
+        // Funcionalidad para subir imágenes locales a la galería
+        const btn = document.getElementById('btnAgregarFoto');
+        const inputFile = document.getElementById('subirFoto');
+        const galeria = document.getElementById('galeriaContainer');
+
+        btn.addEventListener('click', () => {
+            const file = inputFile.files[0];
+            if(file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const nuevoItem = document.createElement('div');
+                    nuevoItem.className = 'galeria-item';
+                    nuevoItem.innerHTML = `<img src="${e.target.result}" alt="Trabajo Itzayana"><p>📸 Evento realizado</p>`;
+                    galeria.appendChild(nuevoItem);
+                };
+                reader.readAsDataURL(file);
+                inputFile.value = '';
+            } else {
+                alert("Por favor selecciona una imagen jpg o png");
+            }
+        });
+    </script>
+</body>
+</html>
