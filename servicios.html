@@ -3,88 +3,591 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servicios de Producciones Itzayana - Decoración temática, show de imitadores, bodas, XV años, altares, arreglos florales y más en Salina Cruz, Oaxaca.">
     <title>Servicios - Producciones Itzayana</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="img/logo/logo.png">
+    
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        .servicio-lista {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 1rem;
+        /* ===== MEJORAS EXCLUSIVAS PARA SERVICIOS ===== */
+        
+        /* Animación de entrada para el hero */
+        .hero-servicios .hero-contenido {
+            animation: fadeInDown 0.8s ease-out forwards;
         }
-        .servicio-card {
-            background: white;
-            margin: 1.5rem 0;
-            padding: 1.5rem;
-            border-radius: 28px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            border-left: 8px solid #F5C542;
-            transition: 0.2s;
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .servicio-card h3 {
-            color: #5C2E1A;
-            margin-bottom: 0.5rem;
-            font-size: 1.5rem;
-        }
-        .servicio-card i {
-            color: #F5C542;
-            margin-right: 10px;
-        }
-        .contacto-directo {
-            background: #5C2E1A;
-            color: #F5C542;
+        
+        /* Estilo para el banner de presupuesto flexible */
+        .presupuesto-banner {
+            background: linear-gradient(135deg, var(--verde-oscuro), var(--negro));
+            margin: -2rem 2rem 2rem 2rem;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
             text-align: center;
-            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border: 1px solid rgba(249,168,37,0.3);
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .presupuesto-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(249,168,37,0.1) 0%, transparent 70%);
+            animation: rotateGlow 20s linear infinite;
+        }
+        
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .presupuesto-banner-contenido {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .presupuesto-banner i {
+            font-size: 2.5rem;
+            color: var(--dorado);
+            filter: drop-shadow(0 0 10px rgba(249,168,37,0.5));
+            animation: pulseIcon 2s infinite;
+        }
+        
+        @keyframes pulseIcon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .presupuesto-banner-texto {
+            text-align: left;
+        }
+        
+        .presupuesto-banner-texto h4 {
+            color: var(--dorado);
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+        
+        .presupuesto-banner-texto p {
+            color: var(--blanco);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        
+        .presupuesto-banner-texto p small {
+            color: var(--amarillo);
+            font-size: 0.8rem;
+        }
+        
+        /* Tarjetas de servicio con animación escalonada */
+        .servicio-card-moderno {
+            opacity: 0;
+            animation: cardFadeIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Delay escalonado para cada tarjeta */
+        .servicio-card-moderno:nth-child(1) { animation-delay: 0.05s; }
+        .servicio-card-moderno:nth-child(2) { animation-delay: 0.1s; }
+        .servicio-card-moderno:nth-child(3) { animation-delay: 0.15s; }
+        .servicio-card-moderno:nth-child(4) { animation-delay: 0.2s; }
+        .servicio-card-moderno:nth-child(5) { animation-delay: 0.25s; }
+        .servicio-card-moderno:nth-child(6) { animation-delay: 0.3s; }
+        .servicio-card-moderno:nth-child(7) { animation-delay: 0.35s; }
+        .servicio-card-moderno:nth-child(8) { animation-delay: 0.4s; }
+        .servicio-card-moderno:nth-child(9) { animation-delay: 0.45s; }
+        
+        /* Mejora en el hover de las tarjetas */
+        .servicio-card-moderno {
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        
+        .servicio-card-moderno:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+        
+        .servicio-card-moderno .servicio-icono i {
+            transition: all 0.3s ease;
+        }
+        
+        .servicio-card-moderno:hover .servicio-icono i {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* Contador de servicios */
+        .servicios-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .servicios-count {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--dorado), var(--amarillo));
+            color: var(--negro);
+            padding: 0.3rem 1rem;
             border-radius: 50px;
-            width: fit-content;
-            margin: 2rem auto;
-            font-weight: bold;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .servicios-count i {
+            margin-right: 0.3rem;
+        }
+        
+        /* CTA mejorado */
+        .cta-servicios {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-servicios::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .cta-servicios:hover::before {
+            left: 100%;
+        }
+        
+        .cta-botones .btn-primario, 
+        .cta-botones .btn-whatsapp {
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        
+        .cta-botones .btn-primario:hover,
+        .cta-botones .btn-whatsapp:hover {
+            transform: scale(1.05) translateY(-3px);
+        }
+        
+        /* ===== ENLACE A GALERÍA (MODERNO Y BONITO) ===== */
+        .ver-galeria-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #fef9f0, #fff);
+            margin-top: 1rem;
+        }
+        
+        .ver-galeria-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--verde-oscuro), var(--negro));
+            border-radius: 30px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+        }
+        
+        .ver-galeria-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+        }
+        
+        .ver-galeria-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(249,168,37,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .ver-galeria-card:hover::before {
+            left: 100%;
+        }
+        
+        .ver-galeria-icono {
+            width: 80px;
+            height: 80px;
+            background: var(--dorado);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .ver-galeria-card:hover .ver-galeria-icono {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(249,168,37,0.6);
+        }
+        
+        .ver-galeria-icono i {
+            font-size: 2.5rem;
+            color: var(--negro);
+        }
+        
+        .ver-galeria-card h3 {
+            color: var(--dorado);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .ver-galeria-card p {
+            color: var(--blanco);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .btn-galeria {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--dorado);
+            color: var(--negro);
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-galeria:hover {
+            background: var(--blanco);
+            transform: scale(1.02);
+            gap: 1rem;
+        }
+        
+        .btn-galeria i {
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-galeria:hover i {
+            transform: translateX(5px);
+        }
+        
+        @media (max-width: 768px) {
+            .presupuesto-banner {
+                margin: -1rem 1rem 1.5rem 1rem;
+                padding: 1rem;
+            }
+            
+            .presupuesto-banner i {
+                font-size: 1.8rem;
+            }
+            
+            .presupuesto-banner-texto h4 {
+                font-size: 1rem;
+            }
+            
+            .presupuesto-banner-texto p {
+                font-size: 0.8rem;
+            }
+            
+            .ver-galeria-card {
+                padding: 1.5rem;
+                margin: 0 1rem;
+            }
+            
+            .ver-galeria-card h3 {
+                font-size: 1.4rem;
+            }
+            
+            .ver-galeria-icono {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .ver-galeria-icono i {
+                font-size: 1.8rem;
+            }
+            
+            .btn-galeria {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .servicio-card-moderno {
+                animation: none;
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <h1>Producciones <span>Itzayana</span></h1>
-            <p>✨ Creatividad y calidad ✨</p>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo-area">
+            <div class="logo-imagen">
+                <img src="img/logo/logo.png" alt="Logo Producciones Itzayana">
+            </div>
+            <div class="logo-texto">
+                <h1>Producciones <span>Itzayana</span></h1>
+                <p> Creatividad y calidad </p>
+            </div>
         </div>
+        
         <div class="menu-icon" id="menuToggle">☰</div>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="servicios.html" class="active">Servicios</a></li>
             <li><a href="galeria.html">Galería</a></li>
             <li><a href="contacto.html">Contacto</a></li>
         </ul>
-    </nav>
+    </div>
+</nav>
 
-    <h1 style="text-align: center; margin: 2rem; color:#5C2E1A;">🎈 Todo lo que ofrecemos 🎭</h1>
+<!-- HERO DE SERVICIOS MEJORADO -->
+<section class="hero-servicios">
+    <div class="hero-contenido">
+        <h1 class="hero-titulo">🎈 Mis Servicios 🎭</h1>
+        <p class="hero-descripcion">Todo lo que necesitas para hacer de tu evento un momento inolvidable</p>
+    </div>
+</section>
 
-    <div class="servicio-lista">
-        <div class="servicio-card">
-            <h3><i class="fas fa-balloon"></i> Adornos y decoración para fiestas</h3>
+<!-- BANNER GENERAL DE PRESUPUESTO FLEXIBLE -->
+<div class="presupuesto-banner">
+    <div class="presupuesto-banner-contenido">
+        <i class="fas fa-hand-holding-usd"></i>
+        <div class="presupuesto-banner-texto">
+            <h4><i class="fas fa-heart" style="font-size: 0.9rem;"></i> Presupuesto flexible para todos mis servicios</h4>
+            <p>Me ajusto a tu presupuesto sin comprometer la calidad. <small>(*Se aplican restricciones según el tipo de servicio)</small></p>
+        </div>
+    </div>
+</div>
+
+<!-- LISTA DE SERVICIOS CON CONTADOR -->
+<section class="servicios-principales">
+    <div class="servicios-header">
+        <span class="servicios-count"><i class="fas fa-star"></i> 9 servicios especializados</span>
+    </div>
+    <div class="servicios-grid">
+        
+        <!-- Servicio 1: Adornos y decoración -->
+        <div class="servicio-card-moderno">
+            <div class="servicio-icono">
+                <i class="fas fa-balloon"></i>
+            </div>
+            <h3>🎈 Adornos y decoración para fiestas</h3>
             <p>Globos, arreglos florales, guirnaldas, centros de mesa y ambientación personalizada para cumpleaños, baby shower, graduaciones y eventos sociales.</p>
         </div>
-        <div class="servicio-card">
-            <h3><i class="fas fa-user-tie"></i> Show de imitadores de artistas</h3>
+
+        <!-- Servicio 2: Centros de mesa -->
+        <div class="servicio-card-moderno">
+            <div class="servicio-icono">
+                <i class="fas fa-table"></i>
+            </div>
+            <h3>🕯️ Centros de mesa</h3>
+            <p>Diseños exclusivos para bodas, XV años, bautizos y eventos empresariales. Creatividad y elegancia en cada detalle.</p>
+        </div>
+
+        <!-- Servicio 3: Tornos -->
+        <div class="servicio-card-moderno">
+            <div class="servicio-icono">
+                <i class="fas fa-cogs"></i>
+            </div>
+            <h3>⚙️ Tornos</h3>
+            <p>Tornos decorativos y estructurales para eventos especiales. Ideal para entradas, pistas de baile y áreas fotográficas.</p>
+        </div>
+
+        <!-- Servicio 4: Altares de santos -->
+        <div class="servicio-card-moderno">
+            <div class="servicio-icono">
+                <i class="fas fa-church"></i>
+            </div>
+            <h3>⛪ Altares de santos</h3>
+            <p>Altares religiosos para bodas, bautizos, primeras comuniones y eventos especiales. Flores naturales y decoración solemne.</p>
+        </div>
+
+        <!-- Servicio 5: Altar luctuoso -->
+        <div class="servicio-card-moderno">
+            <div class="servicio-icono">
+                <i class="fas fa-dove"></i>
+            </div>
+            <h3>🕊️ Altar luctuoso</h3>
+            <p>Arreglos florales y decoración con respeto y elegancia para funerales y homenajes. Flores naturales y coronas.</p>
+        </div>
+
+        <!-- Servicio 6: Arreglos con flores naturales -->
+        <div class="servicio-card-moderno">
+            <div class="servicio-icono">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <h3>🌿 Arreglos con flores naturales</h3>
+            <p>Ramos, centros de mesa, arcos florales y decoración con flores frescas. Para bodas, XV años, cumpleaños y eventos especiales.</p>
+        </div>
+
+        <!-- Servicio 7: Show de imitadores -->
+        <div class="servicio-card-moderno">
+            <div class="servicio-icono">
+                <i class="fas fa-microphone-alt"></i>
+            </div>
+            <h3>🎤 Show de imitadores de artistas</h3>
             <p>Espectáculo único con imitadores profesionales de tus artistas favoritos (música, comedia, personajes). Ideal para sorprender y animar tu evento.</p>
         </div>
-        <div class="servicio-card">
-            <h3><i class="fas fa-ring"></i> Bodas y 15 años</h3>
+
+        <!-- Servicio 8: Bodas y 15 años -->
+        <div class="servicio-card-moderno">
+            <div class="servicio-icono">
+                <i class="fas fa-ring"></i>
+            </div>
+            <h3>💍 Bodas y 15 años</h3>
             <p>Producción completa: decoración de iglesia/jardín, arcos florales, iluminación, pista de baile temática y asesoría personalizada.</p>
         </div>
-        <div class="servicio-card">
-            <h3><i class="fas fa-birthday-cake"></i> Cumpleaños temáticos</h3>
+
+        <!-- Servicio 9: Cumpleaños temáticos -->
+        <div class="servicio-card-moderno">
+            <div class="servicio-icono">
+                <i class="fas fa-birthday-cake"></i>
+            </div>
+            <h3>🎂 Cumpleaños temáticos</h3>
             <p>Decoración con personajes, mesas de dulces, globos de helio y animación. Para niños y adultos.</p>
         </div>
+        
     </div>
+</section>
 
-    <div class="contacto-directo">
-        <i class="fas fa-phone-alt"></i> ¿Quieres cotizar? Llama ya: 971 113 9009
+<!-- LLAMADA A LA ACCIÓN MEJORADA -->
+<section class="cta-servicios">
+    <div class="cta-contenido">
+        <h2><i class="fas fa-calendar-check"></i> ¿Listo para tu evento?</h2>
+        <p>Cotiza sin compromiso y recibe asesoría personalizada</p>
+        <div class="cta-botones">
+            <a href="contacto.html" class="btn-primario"><i class="fas fa-envelope"></i> Contactar ahora</a>
+            <a href="https://wa.me/5219711139009?text=Hola%2C%20quiero%20cotizar%20un%20servicio" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
     </div>
+</section>
 
-    <footer>
-        <p>© 2025 Producciones Itzayana - Juventino Sánchez Ruiz | 📞 971 113 9009</p>
-    </footer>
-    <script src="script.js"></script>
+<!-- ENLACE BONITO A GALERÍA -->
+<section class="ver-galeria-section">
+    <div class="ver-galeria-card" onclick="window.location.href='galeria.html'">
+        <div class="ver-galeria-icono">
+            <i class="fas fa-images"></i>
+        </div>
+        <h3>✨ ¿Necesitas inspiración? ✨</h3>
+        <p>Descubre trabajos reales que he realizado con pasión y dedicación</p>
+        <a href="galeria.html" class="btn-galeria">
+            Ver mi galería <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</section>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/5219711139009?text=Hola%2C%20me%20interesa%20cotizar%20un%20evento" 
+   class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+    <span>Cotiza por WhatsApp</span>
+</a>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-contenido">
+        <div class="footer-columna">
+            <h4>Producciones Itzayana</h4>
+            <p>Creatividad y calidad para tus eventos</p>
+            <p>Haciendo realidad tus sueños desde 2015</p>
+        </div>
+        <div class="footer-columna">
+            <h4>Contacto</h4>
+            <p><i class="fas fa-phone"></i> 971 113 9009</p>
+            <p><i class="fas fa-envelope"></i> juventinosanchezruiz51@gmail.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> Salina Cruz / Oaxaca, México</p>
+        </div>
+        <div class="footer-columna">
+            <h4>Sígueme</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/1KnT2qpbFX/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/juve_saru_decoraciones_show_" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@producciones.itza?_r=1&_t=ZS-967xPe4VJFQ" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Producciones Itzayana - Juventino Sánchez Ruiz. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    // Menú hamburguesa para móviles
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
+    
+    // Efecto de conteo de servicios (opcional)
+    console.log('📋 Servicios cargados: 9 especialidades');
+</script>
+
 </body>
 </html>
