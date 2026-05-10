@@ -3,125 +3,841 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galería de eventos realizados por Producciones Itzayana - Decoraciones, shows de imitadores, bodas y más en Salina Cruz, Oaxaca.">
     <title>Galería - Producciones Itzayana</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
+    <link rel="icon" type="image/png" href="img/logo/logo.png">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        .galeria-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            padding: 2rem;
+        /* ===== ESTILOS PROFESIONALES PARA GALERÍA ===== */
+        
+        /* Fondo con patrón sutil */
+        .galeria-principal {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
         }
+        
+        .galeria-principal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(27, 94, 32, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        /* Efecto glassmorphism en las tarjetas */
         .galeria-item {
-            border-radius: 18px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(0px);
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            background: #fff5e6;
-            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid rgba(249,168,37,0.1);
+            position: relative;
         }
-        .galeria-item img {
+        
+        .galeria-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--verde-claro), var(--dorado), var(--verde-claro));
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+            z-index: 10;
+        }
+        
+        .galeria-item:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .galeria-item:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+            border-color: rgba(249,168,37,0.3);
+        }
+        
+        /* Carrusel mini con efectos modernos */
+        .mini-carrusel {
+            position: relative;
             width: 100%;
-            height: 250px;
+            overflow: hidden;
+            background: #1a1a2e;
+        }
+        
+        .carrusel-slides {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        
+        .carrusel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .carrusel-slide img,
+        .carrusel-slide video {
+            width: 100%;
+            height: 280px;
             object-fit: cover;
-            transition: 0.3s;
+            display: block;
+            transition: transform 0.6s ease, filter 0.4s ease;
         }
-        .galeria-item img:hover {
-            transform: scale(1.02);
+        
+        .galeria-item:hover .carrusel-slide img {
+            transform: scale(1.05);
+            filter: brightness(1.05);
         }
-        .galeria-item p {
-            padding: 0.5rem;
-            background: #6b2e1f;
-            color: #f7d44a;
-            font-weight: bold;
+        
+        /* Overlay elegante sobre imágenes */
+        .carrusel-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(27,94,32,0.2) 0%, rgba(249,168,37,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
         }
-        .subir-imagen {
-            text-align: center;
-            margin: 2rem;
-            padding: 1rem;
-            background: #f5e6d3;
-            border-radius: 30px;
+        
+        .galeria-item:hover .carrusel-slide::after {
+            opacity: 1;
         }
-        .btn-subir {
-            background: #6b2e1f;
-            color: #f7d44a;
-            border: none;
-            padding: 0.6rem 1.5rem;
-            border-radius: 40px;
+        
+        /* Botones del carrusel más elegantes */
+        .carrusel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+            backdrop-filter: blur(4px);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             cursor: pointer;
-            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            z-index: 20;
+            opacity: 0;
+        }
+        
+        .mini-carrusel:hover .carrusel-btn {
+            opacity: 1;
+        }
+        
+        .carrusel-btn:hover {
+            background: var(--dorado);
+            color: var(--negro);
+            transform: translateY(-50%) scale(1.1);
+            border-color: var(--dorado);
+        }
+        
+        .carrusel-prev {
+            left: 15px;
+        }
+        
+        .carrusel-next {
+            right: 15px;
+        }
+        
+        /* Indicadores modernos */
+        .carrusel-indicadores {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 20;
+        }
+        
+        .indicador {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+        
+        .indicador.active {
+            background: var(--dorado);
+            width: 24px;
+            border-radius: 4px;
+            box-shadow: 0 0 8px rgba(249,168,37,0.6);
+        }
+        
+        .indicador:hover {
+            background: var(--dorado);
+            transform: scale(1.2);
+        }
+        
+        /* Video badge mejorado */
+        .video-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+            backdrop-filter: blur(4px);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .video-badge i {
+            color: #ff4444;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        
+        /* Información de la tarjeta mejorada */
+        .galeria-info {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #fff, #fef9f0);
+            position: relative;
+        }
+        
+        .galeria-info h3 {
+            font-size: 1.2rem;
+            color: var(--verde-oscuro);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .galeria-info p {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+        
+        .galeria-fecha {
+            font-size: 0.75rem;
+            color: var(--dorado);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(249,168,37,0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        
+        .galeria-fecha i {
+            font-size: 0.7rem;
+        }
+        
+        /* Efecto de brillo al cargar */
+        @keyframes cardGlow {
+            0% { box-shadow: 0 0 0 0 rgba(249,168,37,0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(249,168,37,0); }
+            100% { box-shadow: 0 0 0 0 rgba(249,168,37,0); }
+        }
+        
+        .galeria-item {
+            animation: cardGlow 0.6s ease-out;
+        }
+        
+        /* Badge de categoría flotante */
+        .categoria-badge {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--verde-claro), var(--verde-oscuro));
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            z-index: 20;
+            backdrop-filter: blur(4px);
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        
+        .galeria-item:hover .categoria-badge {
+            transform: translateX(5px);
+            background: var(--dorado);
+            color: var(--negro);
+        }
+        
+        /* Filtros más elegantes */
+        .galeria-filtros {
+            padding: 2rem 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .filtro-btn {
+            background: transparent;
+            border: 2px solid var(--verde-claro);
+            color: var(--verde-oscuro);
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .filtro-btn:hover {
+            background: var(--verde-claro);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46,125,50,0.3);
+        }
+        
+        .filtro-btn.active {
+            background: linear-gradient(135deg, var(--verde-claro), var(--verde-oscuro));
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(249,168,37,0.3);
+        }
+        
+        /* Contador de trabajos */
+        .contador-trabajos {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--verde-oscuro);
+            font-weight: 500;
+        }
+        
+        .contador-trabajos span {
+            background: var(--dorado);
+            color: var(--negro);
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin: 0 4px;
+        }
+        
+        /* Animación de entrada para cada item */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .galeria-item {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .carrusel-slide img,
+            .carrusel-slide video {
+                height: 220px;
+            }
+            
+            .carrusel-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+                opacity: 0.7;
+            }
+            
+            .galeria-info {
+                padding: 1rem;
+            }
+            
+            .galeria-info h3 {
+                font-size: 1rem;
+            }
+            
+            .filtro-btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .carrusel-slide img,
+            .carrusel-slide video {
+                height: 250px;
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <h1>🎈 Producciones Itzayana</h1>
-            <p>Entregando en tiempo y forma</p>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo-area">
+            <div class="logo-imagen">
+                <img src="img/logo/logo.png" alt="Logo Producciones Itzayana">
+            </div>
+            <div class="logo-texto">
+                <h1>Producciones <span>Itzayana</span></h1>
+                <p> Creatividad y calidad </p>
+            </div>
         </div>
+        
         <div class="menu-icon" id="menuToggle">☰</div>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="servicios.html">Servicios</a></li>
-            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="galeria.html" class="active">Galería</a></li>
             <li><a href="contacto.html">Contacto</a></li>
         </ul>
-    </nav>
+    </div>
+</nav>
 
-    <h1 style="text-align: center; margin: 2rem; color:#6b2e1f;">📸 Nuestros Trabajos Realizados</h1>
+<!-- HERO DE GALERÍA -->
+<section class="hero-galeria">
+    <div class="hero-contenido">
+        <h1 class="hero-titulo">📸 Mis Trabajos</h1>
+        <p class="hero-descripcion">Eventos reales que he hecho realidad con creatividad y calidad</p>
+    </div>
+</section>
+
+<!-- GALERÍA CON CARRUSELES -->
+<section class="galeria-principal">
+    <div class="galeria-filtros">
+        <button class="filtro-btn active" data-filtro="todos">✨ Todos</button>
+        <button class="filtro-btn" data-filtro="decoracion">🎈 Decoración</button>
+        <button class="filtro-btn" data-filtro="show">🎤 Shows</button>
+        <button class="filtro-btn" data-filtro="bodas">💒 Bodas & XV</button>
+    </div>
+    
+    <div class="contador-trabajos">
+        <i class="fas fa-images"></i> <span id="trabajosVisibles">8</span> trabajos destacados
+    </div>
 
     <div class="galeria-grid" id="galeriaContainer">
-        <!-- Ejemplos de trabajos reales (cambia las imágenes por las tuyas) -->
-        <div class="galeria-item">
-            <img src="https://placehold.co/400x300/f7d44a/6b2e1f?text=Decoración+Globos" alt="Adornos globos">
-            <p>🎈 Decoración temática</p>
+        
+        <!-- ===== TRABAJO 1: Decoración Temática ===== -->
+        <div class="galeria-item" data-categoria="decoracion">
+            <div class="mini-carrusel">
+                <div class="carrusel-slides">
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/deco1.jpg" alt="Decoración globos 1">
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/deco2.jpg" alt="Decoración globos 2">
+                    </div>
+                    <div class="carrusel-slide">
+                        <video controls preload="metadata">
+                            <source src="img/galeria/deco-video.mp4" type="video/mp4">
+                            Tu navegador no soporta videos.
+                        </video>
+                    </div>
+                </div>
+                <button class="carrusel-btn carrusel-prev">❮</button>
+                <button class="carrusel-btn carrusel-next">❯</button>
+                <div class="carrusel-indicadores"></div>
+                <div class="video-badge"><i class="fas fa-video"></i> Video</div>
+                <div class="categoria-badge"><i class="fas fa-balloon"></i> Decoración</div>
+            </div>
+            <div class="galeria-info">
+                <h3><i class="fas fa-star" style="color: var(--dorado);"></i> Decoración Temática</h3>
+                <p>Fiesta infantil con globos y personajes</p>
+                <span class="galeria-fecha"><i class="fas fa-calendar"></i> Marzo 2025</span>
+            </div>
         </div>
-        <div class="galeria-item">
-            <img src="https://placehold.co/400x300/d49c6c/ffffff?text=Imitador+Michael" alt="Show imitador">
-            <p>🎤 Show Imitador de Artista</p>
+
+        <!-- ===== TRABAJO 2: Show de Imitadores ===== -->
+        <div class="galeria-item" data-categoria="show">
+            <div class="mini-carrusel">
+                <div class="carrusel-slides">
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/show1.jpg" alt="Show imitador 1">
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/show2.jpg" alt="Show imitador 2">
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/show3.jpg" alt="Show imitador 3">
+                    </div>
+                    <div class="carrusel-slide">
+                        <video controls preload="metadata">
+                            <source src="img/galeria/show-video.mp4" type="video/mp4">
+                            Tu navegador no soporta videos.
+                        </video>
+                    </div>
+                </div>
+                <button class="carrusel-btn carrusel-prev">❮</button>
+                <button class="carrusel-btn carrusel-next">❯</button>
+                <div class="carrusel-indicadores"></div>
+                <div class="video-badge"><i class="fas fa-video"></i> Video</div>
+                <div class="categoria-badge"><i class="fas fa-microphone-alt"></i> Show</div>
+            </div>
+            <div class="galeria-info">
+                <h3><i class="fas fa-microphone-alt" style="color: var(--dorado);"></i> Show de Imitadores</h3>
+                <p>Espectáculo de Michael Jackson</p>
+                <span class="galeria-fecha"><i class="fas fa-calendar"></i> Febrero 2025</span>
+            </div>
         </div>
-        <div class="galeria-item">
-            <img src="https://placehold.co/400x300/a56b3a/ffe0b5?text=Boda+Romántica" alt="Boda">
-            <p>💒 Boda con arco floral</p>
+
+        <!-- ===== TRABAJO 3: Boda Romántica ===== -->
+        <div class="galeria-item" data-categoria="bodas">
+            <div class="mini-carrusel">
+                <div class="carrusel-slides">
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/boda1.jpg" alt="Boda romántica 1">
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/boda2.jpg" alt="Boda romántica 2">
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/boda3.jpg" alt="Boda romántica 3">
+                    </div>
+                </div>
+                <button class="carrusel-btn carrusel-prev">❮</button>
+                <button class="carrusel-btn carrusel-next">❯</button>
+                <div class="carrusel-indicadores"></div>
+                <div class="categoria-badge"><i class="fas fa-ring"></i> Boda</div>
+            </div>
+            <div class="galeria-info">
+                <h3><i class="fas fa-heart" style="color: var(--dorado);"></i> Boda Romántica</h3>
+                <p>Decoración con arco floral y luces</p>
+                <span class="galeria-fecha"><i class="fas fa-calendar"></i> Enero 2025</span>
+            </div>
         </div>
-        <div class="galeria-item">
-            <img src="https://placehold.co/400x300/e6b17e/4a2a1a?text=XV+Años" alt="Fiesta 15 años">
-            <p>👑 15 años mágicos</p>
+
+        <!-- ===== TRABAJO 4: XV Años Mágicos ===== -->
+        <div class="galeria-item" data-categoria="bodas">
+            <div class="mini-carrusel">
+                <div class="carrusel-slides">
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/xv1.jpg" alt="XV años 1">
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/xv2.jpg" alt="XV años 2">
+                    </div>
+                    <div class="carrusel-slide">
+                        <video controls preload="metadata">
+                            <source src="img/galeria/xv-video.mp4" type="video/mp4">
+                            Tu navegador no soporta videos.
+                        </video>
+                    </div>
+                </div>
+                <button class="carrusel-btn carrusel-prev">❮</button>
+                <button class="carrusel-btn carrusel-next">❯</button>
+                <div class="carrusel-indicadores"></div>
+                <div class="video-badge"><i class="fas fa-video"></i> Video</div>
+                <div class="categoria-badge"><i class="fas fa-crown"></i> XV Años</div>
+            </div>
+            <div class="galeria-info">
+                <h3><i class="fas fa-crown" style="color: var(--dorado);"></i> XV Años Mágicos</h3>
+                <p>Celebración con temática de cuento</p>
+                <span class="galeria-fecha"><i class="fas fa-calendar"></i> Diciembre 2024</span>
+            </div>
+        </div>
+
+        <!-- ===== TRABAJO 5: Cumpleaños Temático ===== -->
+        <div class="galeria-item" data-categoria="decoracion">
+            <div class="mini-carrusel">
+                <div class="carrusel-slides">
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/cumple1.jpg" alt="Cumpleaños 1">
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/cumple2.jpg" alt="Cumpleaños 2">
+                    </div>
+                </div>
+                <button class="carrusel-btn carrusel-prev">❮</button>
+                <button class="carrusel-btn carrusel-next">❯</button>
+                <div class="carrusel-indicadores"></div>
+                <div class="categoria-badge"><i class="fas fa-birthday-cake"></i> Cumpleaños</div>
+            </div>
+            <div class="galeria-info">
+                <h3><i class="fas fa-gift" style="color: var(--dorado);"></i> Cumpleaños Temático</h3>
+                <p>Fiesta de superhéroes</p>
+                <span class="galeria-fecha"><i class="fas fa-calendar"></i> Noviembre 2024</span>
+            </div>
+        </div>
+
+        <!-- ===== TRABAJO 6: Show de Comedia ===== -->
+        <div class="galeria-item" data-categoria="show">
+            <div class="mini-carrusel">
+                <div class="carrusel-slides">
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/comedia1.jpg" alt="Comedia 1">
+                    </div>
+                    <div class="carrusel-slide">
+                        <video controls preload="metadata">
+                            <source src="img/galeria/comedia-video.mp4" type="video/mp4">
+                            Tu navegador no soporta videos.
+                        </video>
+                    </div>
+                </div>
+                <button class="carrusel-btn carrusel-prev">❮</button>
+                <button class="carrusel-btn carrusel-next">❯</button>
+                <div class="carrusel-indicadores"></div>
+                <div class="video-badge"><i class="fas fa-video"></i> Video</div>
+                <div class="categoria-badge"><i class="fas fa-laugh"></i> Comedia</div>
+            </div>
+            <div class="galeria-info">
+                <h3><i class="fas fa-face-smile" style="color: var(--dorado);"></i> Show de Comedia</h3>
+                <p>Imitadores de artistas mexicanos</p>
+                <span class="galeria-fecha"><i class="fas fa-calendar"></i> Octubre 2024</span>
+            </div>
+        </div>
+
+        <!-- ===== TRABAJO 7: Baby Shower ===== -->
+        <div class="galeria-item" data-categoria="decoracion">
+            <div class="mini-carrusel">
+                <div class="carrusel-slides">
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/baby1.jpg" alt="Baby shower 1">
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/baby2.jpg" alt="Baby shower 2">
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/baby3.jpg" alt="Baby shower 3">
+                    </div>
+                </div>
+                <button class="carrusel-btn carrusel-prev">❮</button>
+                <button class="carrusel-btn carrusel-next">❯</button>
+                <div class="carrusel-indicadores"></div>
+                <div class="categoria-badge"><i class="fas fa-baby"></i> Baby Shower</div>
+            </div>
+            <div class="galeria-info">
+                <h3><i class="fas fa-baby-carriage" style="color: var(--dorado);"></i> Baby Shower</h3>
+                <p>Decoración temática para futura mamá</p>
+                <span class="galeria-fecha"><i class="fas fa-calendar"></i> Septiembre 2024</span>
+            </div>
+        </div>
+
+        <!-- ===== TRABAJO 8: Graduación ===== -->
+        <div class="galeria-item" data-categoria="decoracion">
+            <div class="mini-carrusel">
+                <div class="carrusel-slides">
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/grado1.jpg" alt="Graduación 1">
+                    </div>
+                    <div class="carrusel-slide">
+                        <img src="img/galeria/grado2.jpg" alt="Graduación 2">
+                    </div>
+                </div>
+                <button class="carrusel-btn carrusel-prev">❮</button>
+                <button class="carrusel-btn carrusel-next">❯</button>
+                <div class="carrusel-indicadores"></div>
+                <div class="categoria-badge"><i class="fas fa-graduation-cap"></i> Graduación</div>
+            </div>
+            <div class="galeria-info">
+                <h3><i class="fas fa-award" style="color: var(--dorado);"></i> Graduación</h3>
+                <p>Celebración de logros académicos</p>
+                <span class="galeria-fecha"><i class="fas fa-calendar"></i> Agosto 2024</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- LLAMADA A LA ACCIÓN -->
+<section class="cta-galeria">
+    <div class="cta-contenido">
+        <h2><i class="fas fa-calendar-check"></i> ¿Quieres un evento así?</h2>
+        <p>Contáctame y hagamos realidad tus sueños</p>
+        <div class="cta-botones">
+            <a href="contacto.html" class="btn-primario"><i class="fas fa-envelope"></i> Contactar ahora</a>
+            <a href="https://wa.me/5219711139009?text=Hola%2C%20vi%20tu%20galería%20y%20me%20interesa%20cotizar%20un%20evento" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         </div>
     </div>
+</section>
 
-    <div class="subir-imagen">
-        <h3>➕ Agrega tus propios trabajos</h3>
-        <input type="file" id="subirFoto" accept="image/*">
-        <button class="btn-subir" id="btnAgregarFoto">Subir imagen a galería</button>
-        <p style="margin-top: 0.5rem;">📱 Capturada en moto g2 play - 8 de abril de 2022</p>
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/5219711139009?text=Hola%2C%20vi%20tu%20galería%20y%20me%20interesa%20cotizar%20un%20evento" 
+   class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+    <span>Cotiza por WhatsApp</span>
+</a>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-contenido">
+        <div class="footer-columna">
+            <h4>Producciones Itzayana</h4>
+            <p>Creatividad y calidad para tus eventos</p>
+            <p>Haciendo realidad tus sueños desde 2015</p>
+        </div>
+        <div class="footer-columna">
+            <h4>Contacto</h4>
+            <p><i class="fas fa-phone"></i> 971 113 9009</p>
+            <p><i class="fas fa-envelope"></i> juventinosanchezruiz51@gmail.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> Salina Cruz / Oaxaca, México</p>
+        </div>
+        <div class="footer-columna">
+            <h4>Sígueme</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/1KnT2qpbFX/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/juve_saru_decoraciones_show_" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@producciones.itza?_r=1&_t=ZS-967xPe4VJFQ" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
     </div>
+    <div class="footer-bottom">
+        <p>© 2026 Producciones Itzayana - Juventino Sánchez Ruiz. Todos los derechos reservados.</p>
+    </div>
+</footer>
 
-    <footer>
-        <p>© 2025 Producciones Itzayana - Juventino Sánchez Ruiz | 📞 971 113 9009</p>
-    </footer>
+<script>
+    // ===== MENÚ HAMBURGUESA =====
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
 
-    <script>
-        // Funcionalidad para subir imágenes locales a la galería
-        const btn = document.getElementById('btnAgregarFoto');
-        const inputFile = document.getElementById('subirFoto');
-        const galeria = document.getElementById('galeriaContainer');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
 
+    // ===== CARRUSELES MINI =====
+    function inicializarCarrusel(contenedor) {
+        const slidesContainer = contenedor.querySelector('.carrusel-slides');
+        const slides = contenedor.querySelectorAll('.carrusel-slide');
+        const prevBtn = contenedor.querySelector('.carrusel-prev');
+        const nextBtn = contenedor.querySelector('.carrusel-next');
+        const indicadoresContainer = contenedor.querySelector('.carrusel-indicadores');
+        
+        if (!slides.length) return;
+        
+        let indexActual = 0;
+        const totalSlides = slides.length;
+        
+        if (indicadoresContainer) {
+            indicadoresContainer.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const indicador = document.createElement('div');
+                indicador.classList.add('indicador');
+                if (i === 0) indicador.classList.add('active');
+                indicador.addEventListener('click', () => irAlSlide(i));
+                indicadoresContainer.appendChild(indicador);
+            }
+        }
+        
+        function actualizarCarrusel() {
+            if (slidesContainer) {
+                slidesContainer.style.transform = `translateX(-${indexActual * 100}%)`;
+            }
+            const indicadores = contenedor.querySelectorAll('.indicador');
+            indicadores.forEach((ind, i) => {
+                ind.classList.toggle('active', i === indexActual);
+            });
+        }
+        
+        function irAlSlide(index) {
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+            indexActual = index;
+            actualizarCarrusel();
+        }
+        
+        function siguiente() { irAlSlide(indexActual + 1); }
+        function anterior() { irAlSlide(indexActual - 1); }
+        
+        if (prevBtn) prevBtn.addEventListener('click', anterior);
+        if (nextBtn) nextBtn.addEventListener('click', siguiente);
+    }
+    
+    document.querySelectorAll('.mini-carrusel').forEach(carrusel => {
+        inicializarCarrusel(carrusel);
+    });
+    
+    // ===== FILTROS DE GALERÍA =====
+    const filtrosBtns = document.querySelectorAll('.filtro-btn');
+    const galeriaItems = document.querySelectorAll('.galeria-item');
+    const contadorSpan = document.getElementById('trabajosVisibles');
+    
+    function actualizarContador() {
+        let visibles = 0;
+        galeriaItems.forEach(item => {
+            if (item.style.display !== 'none') visibles++;
+        });
+        if (contadorSpan) contadorSpan.textContent = visibles;
+    }
+    
+    filtrosBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const file = inputFile.files[0];
-            if(file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const nuevoItem = document.createElement('div');
-                    nuevoItem.className = 'galeria-item';
-                    nuevoItem.innerHTML = `<img src="${e.target.result}" alt="Trabajo Itzayana"><p>📸 Evento realizado</p>`;
-                    galeria.appendChild(nuevoItem);
-                };
-                reader.readAsDataURL(file);
-                inputFile.value = '';
-            } else {
-                alert("Por favor selecciona una imagen jpg o png");
+            filtrosBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const filtro = btn.getAttribute('data-filtro');
+            
+            galeriaItems.forEach(item => {
+                if (filtro === 'todos' || item.getAttribute('data-categoria') === filtro) {
+                    item.style.display = 'block';
+                    item.style.animation = 'fadeInUp 0.5s ease forwards';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            actualizarContador();
+        });
+    });
+    
+    actualizarContador();
+    
+    // ===== ANIMACIÓN DE APARICIÓN =====
+    const observerItems = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
-    </script>
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    document.querySelectorAll('.galeria-item').forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'all 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
+        observerItems.observe(item);
+    });
+</script>
+
 </body>
 </html>
